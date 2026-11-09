@@ -218,7 +218,16 @@ The interactive application is deployed on **Hugging Face Spaces** using **Gradi
 * **Hugging Face Space:** [huggingface.co/spaces/Sarthak2606/waste-classifier](https://huggingface.co/spaces/Sarthak2606/waste-classifier)
 * **Direct Fullscreen App:** [sarthak2606-waste-classifier.hf.space](https://sarthak2606-waste-classifier.hf.space)
 
+### 📥 Pretrained Model & App Download
+
+If you wish to test or run inference locally without retraining the pipeline from scratch, you can obtain the pre-trained weights or the standalone `app.py` directly from the Hugging Face Space repository:
+
+* **Browse Space Repository Files:** [Hugging Face Files & Versions](https://huggingface.co/spaces/Sarthak2606/waste-classifier/tree/main)
+* **Direct Weights Download:** [`model/efficientnet_b4_waste.pt`](https://huggingface.co/spaces/Sarthak2606/waste-classifier/resolve/main/model/efficientnet_b4_waste.pt) (~71 MB)
+* *Note:* Save the checkpoint to `app/model/efficientnet_b4_waste.pt` (or the root directory) before running the web app.
+
 ### Running the Web App Locally
+
 ```bash
 cd app
 pip install -r requirements.txt
@@ -231,5 +240,5 @@ Access the interactive web UI at `http://localhost:7860`.
 ## 📜 License & Citation
 
 * **Code:** Licensed under the [MIT License](LICENSE).
-* **Dataset:** Based on the Garbage Classification Dataset (v2) by Suman Kunwar. Please verify the upstream dataset license for commercial application.
+* **Dataset:** Based on the [Garbage Classification Dataset (v2) by Suman Kunwar](https://www.kaggle.com/datasets/sumn2u/garbage-classification-v2) on Kaggle. Please verify the upstream dataset license for commercial application.
 
