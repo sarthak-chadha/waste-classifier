@@ -5,8 +5,11 @@
 [![Torchvision](https://img.shields.io/badge/Torchvision-0.26+-EE4C2C.svg)](https://pytorch.org/vision/)
 [![Test Accuracy](https://img.shields.io/badge/Test%20Accuracy-97.39%25-brightgreen.svg)]()
 [![Macro F1](https://img.shields.io/badge/Macro--F1-0.9710-blue.svg)]()
-[![Streamlit](https://img.shields.io/badge/Streamlit-App-FF4B4B.svg?logo=streamlit&logoColor=white)](https://streamlit.io/)
-[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg?logo=docker&logoColor=white)](https://www.docker.com/)
+[![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-FFD21E.svg)](https://huggingface.co/spaces/Sarthak2606/waste-classifier)
+[![Gradio](https://img.shields.io/badge/Gradio-App-F97316.svg?logo=gradio&logoColor=white)](https://gradio.app/)
+[![ZeroGPU](https://img.shields.io/badge/ZeroGPU-Accelerated-8A2BE2.svg)](https://huggingface.co/docs/hub/spaces-gpus)
+
+> 🚀 **Live Web App:** Try the model live on Hugging Face Spaces: [sarthak2606-waste-classifier.hf.space](https://sarthak2606-waste-classifier.hf.space)
 
 An end-to-end computer vision pipeline and production deployment for automated municipal waste classification. 
 
@@ -113,7 +116,7 @@ The pipeline is organized into modular, reproducible steps:
                   └───────────┬────────────┘
                               ▼
                   ┌────────────────────────┐
-                  │ 5. app/app.py          │ ── Streamlit interactive deployment
+                  │ 5. app/app.py          │ ── Gradio interactive deployment (Hugging Face)
                   └────────────────────────┘
 ```
 
@@ -122,7 +125,7 @@ The pipeline is organized into modular, reproducible steps:
 3. **`src/step2_dataset.py`**: Custom `EpochOversampler` redraws fresh minority-class samples without replacement each epoch and pairs them with dynamic geometric augmentations (vertical/horizontal flips, color jitter, Gaussian blur, and ImageNet mean rotation padding).
 4. **`src/step3_train.py`**: Implements mixed-precision (`bfloat16`) training using AdamW, cosine annealing with linear warmup, and gradient accumulation. Executes Base, Control, and Fine-Tuning under identical epoch seeds.
 5. **`src/step4_evaluate.py`**: Evaluates all three checkpoints on the held-out test split, reproducing validation sanity checks before calculating paired bootstrap 95% confidence intervals, exact McNemar test statistics, confusion matrix heatmaps, and failure galleries.
-6. **`app/`**: Standalone, containerized Streamlit application featuring aspect-ratio-preserving letterboxing, transparent PNG alpha-compositing, EXIF orientation correction, top-3 confidence bars, and customized municipal disposal recommendations.
+6. **`app/`**: Standalone Gradio application deployed to Hugging Face Spaces featuring aspect-ratio-preserving letterboxing, transparent PNG alpha-compositing, EXIF orientation correction, top-3 confidence bars, and customized municipal disposal recommendations.
 
 ---
 
@@ -158,12 +161,11 @@ waste_classifier/
 │   ├── step2_dataset.py
 │   ├── step3_train.py
 │   └── step4_evaluate.py
-└── app/                               # Deployment package (Hugging Face / Docker)
+└── app/                               # Deployment package (Hugging Face Spaces)
     ├── .gitignore                     # Hugging Face Space cache ignore
     ├── README.md                      # Space settings & YAML frontmatter
-    ├── Dockerfile                     # Streamlit container configuration
-    ├── requirements.txt               # Lightweight CPU inference dependencies
-    ├── app.py                         # Interactive Streamlit web interface
+    ├── requirements.txt               # Gradio and PyTorch inference dependencies
+    ├── app.py                         # Interactive Gradio web application
     └── model/
         └── efficientnet_b4_waste.pt   # Fine-tuned model checkpoint (~71 MB)
 ```
@@ -176,7 +178,7 @@ waste_classifier/
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/waste-classifier.git
+git clone https://github.com/sarthak-chadha/waste-classifier.git
 cd waste-classifier
 
 # Create and activate virtual environment
@@ -211,22 +213,18 @@ python src/step4_evaluate.py
 
 ## 🌐 Web Application & Deployment
 
-The `app/` folder is designed to be pushed directly to **Hugging Face Spaces** (Docker SDK) or run locally.
+The interactive application is deployed on **Hugging Face Spaces** using **Gradio** and **ZeroGPU** acceleration.
 
-### Local Execution
+* **Hugging Face Space:** [huggingface.co/spaces/Sarthak2606/waste-classifier](https://huggingface.co/spaces/Sarthak2606/waste-classifier)
+* **Direct Fullscreen App:** [sarthak2606-waste-classifier.hf.space](https://sarthak2606-waste-classifier.hf.space)
+
+### Running the Web App Locally
 ```bash
 cd app
 pip install -r requirements.txt
-streamlit run app.py
+python app.py
 ```
-
-### Docker Execution
-```bash
-cd app
-docker build -t waste-classifier-app .
-docker run -p 8501:8501 waste-classifier-app
-```
-Access the application at `http://localhost:8501`.
+Access the interactive web UI at `http://localhost:7860`.
 
 ---
 
