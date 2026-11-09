@@ -1,0 +1,91 @@
+{
+  "seed": 42,
+  "classes": [
+    "battery",
+    "cardboard",
+    "clothes",
+    "glass",
+    "metal",
+    "organic",
+    "paper",
+    "plastic",
+    "shoes",
+    "trash"
+  ],
+  "class_to_idx": {
+    "battery": 0,
+    "cardboard": 1,
+    "clothes": 2,
+    "glass": 3,
+    "metal": 4,
+    "organic": 5,
+    "paper": 6,
+    "plastic": 7,
+    "shoes": 8,
+    "trash": 9
+  },
+  "average_train_count": 858.0,
+  "max_repeat": 2.0,
+  "plan": {
+    "battery": {
+      "train_count": 529,
+      "epoch_target": 858,
+      "extra_per_epoch": 329,
+      "avg_repeat": 1.62
+    },
+    "cardboard": {
+      "train_count": 988,
+      "epoch_target": 988,
+      "extra_per_epoch": 0,
+      "avg_repeat": 1.0
+    },
+    "clothes": {
+      "train_count": 1324,
+      "epoch_target": 1324,
+      "extra_per_epoch": 0,
+      "avg_repeat": 1.0
+    },
+    "glass": {
+      "train_count": 1215,
+      "epoch_target": 1215,
+      "extra_per_epoch": 0,
+      "avg_repeat": 1.0
+    },
+    "metal": {
+      "train_count": 651,
+      "epoch_target": 858,
+      "extra_per_epoch": 207,
+      "avg_repeat": 1.32
+    },
+    "organic": {
+      "train_count": 489,
+      "epoch_target": 858,
+      "extra_per_epoch": 369,
+      "avg_repeat": 1.75
+    },
+    "paper": {
+      "train_count": 935,
+      "epoch_target": 935,
+      "extra_per_epoch": 0,
+      "avg_repeat": 1.0
+    },
+    "plastic": {
+      "train_count": 1118,
+      "epoch_target": 1118,
+      "extra_per_epoch": 0,
+      "avg_repeat": 1.0
+    },
+    "shoes": {
+      "train_count": 1014,
+      "epoch_target": 1014,
+      "extra_per_epoch": 0,
+      "avg_repeat": 1.0
+    },
+    "trash": {
+      "train_count": 317,
+      "epoch_target": 634,
+      "extra_per_epoch": 317,
+      "avg_repeat": 2.0
+    }
+  }
+}
